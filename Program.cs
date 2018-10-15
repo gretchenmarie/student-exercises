@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace StudentExercises
 {
@@ -32,9 +33,10 @@ namespace StudentExercises
             Exercise loops = new Exercise("loops", "JavaScript");
             Exercise practice = new Exercise("practice", "JavaScript");
 
+
+
             //assign exercises
-            Meg.AssignExercise(classes, Gretchen);
-            Meg.AssignExercise(hashsets, Gretchen);
+
             Meg.AssignExercise(classes, Leah);
             Meg.AssignExercise(loops, Leah);
             Meg.AssignExercise(nutshell, Wyatt);
@@ -49,26 +51,79 @@ namespace StudentExercises
             Steve.AssignExercise(hashsets, Leah);
             Steve.AssignExercise(classes, Maddie);
             Steve.AssignExercise(hashsets, Maddie);
-            Steve.AssignExercise(chickenMonkey, Gretchen);
-            
-             List<Student> students = new List<Student>();
-             students.Add(Gretchen);
-             students.Add(Wyatt);
-             students.Add(Maddie);
-             students.Add(Leah);
 
-             List<Exercise> exercise = new List<Exercise>();
-            exercise.Add(loops);
-            exercise.Add(hashsets);
-            exercise.Add(classes);
-            exercise.Add(chickenMonkey);
-            exercise.Add(practice);
-            exercise.Add(nutshell);
+
+           // Create a list of students. Add all of the student instances to it.
+            List<Student> students = new List<Student> ()
+            {
+               Gretchen,
+               Maddie,
+               Leah,
+               Wyatt
+            };
+            List<Cohort> Cohorts = new List<Cohort> ()
+            {
+               Evening8,
+               Day25,
+               Day26,
+               Day27
+            };
+
+            // Create a list of exercises. Add all of the exercise instances to it.
+            List<Exercise> exercises = new List<Exercise> ()
+            {
+                classes,
+                hashsets,
+                loops,
+                chickenMonkey,
+                nutshell,
+                practice
+            };
+
+            // list instructors
+            List<Instructor> instructors = new List<Instructor>()
+            {
+               Meg,
+               Steve,
+               Jenna
+            };
+
+
+
+
+            // Display any students that aren't working on any exercises
+            var studentsWithNoExercises = students.Where(stu => stu.Exercises.Count() == 0);
+            foreach (var stu in studentsWithNoExercises)
+            {
+                Console.WriteLine($"Students who aren't working on exercises: {stu.FirstName} {stu.LastName}");
+            }
+
+            var studentsWithExercises = students.Where(stu => stu.Exercises.Count() != 0);
+            foreach (var stu in studentsWithExercises)
+            {
+                Console.WriteLine($"Students with exercises: {stu.FirstName} {stu.LastName}");
+            }
+
+           // List exercises for Javascript with where linq method
+
+            IEnumerable<Exercise> JS = from JavaScript in exercises
+            where JavaScript.Language == "JavaScript"
+            select JavaScript;
+
+            JS.ToList().ForEach(e => Console.WriteLine(e.Name));
+
+            // List instructors in a cohort with linq method
+           IEnumerable<Instructor> inst = from instructor in instructors
+           where instructor.Cohort == Day25
+           select instructor;
+
+           inst.ToList().ForEach(i => Console.WriteLine($"instructor {i.FirstName} {i.Cohort.Name}"));
 
 
         }
     }
 }
+
 
 
 
