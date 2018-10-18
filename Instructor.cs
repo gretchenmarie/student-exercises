@@ -27,8 +27,12 @@ public Cohort cohort {get;set;}
 //takes two arguments-exercise and student-takes the student and assigns and exercise to that
 public void AssignExercise(Exercise exercise, Student student){
     student.Exercises.Add(exercise);
-}
 
+}
+public Instructor()
+{
+
+}
 
     }
 

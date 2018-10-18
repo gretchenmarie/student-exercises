@@ -5,7 +5,7 @@ namespace StudentExercises
 {
     public class Exercise
     {
-       
+
 
         // You must define a type for representing an exercise in code.
         // An exercise can be assigned to many students.Name of exercise
@@ -18,6 +18,10 @@ namespace StudentExercises
             Name = name;
             Language = language;
         }
+    public  Exercise()
+    {
+
+    }
 
     }
 }

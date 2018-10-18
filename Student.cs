@@ -32,6 +32,10 @@ namespace StudentExercises
             Cohort = cohort;
 
         }
+        public Student()
+        {
+            
+        }
     }
 
 }
